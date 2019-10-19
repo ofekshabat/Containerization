@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="../../lib/bootstrap.min.css">
+
+  <script defer src="../../lib/jquery-3.3.1.slim.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+  <script defer src="../../lib/popper.min.js"></script>
+  <script defer src="../../lib/bootstrap.min.js"></script>
+  <script defer src="../../lib/vue.js"></script>
+  <script defer src="list.js"></script>
+
+  <title>Container Manager</title>
+
+  <style>
+    body {
+      padding-top: 5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Container Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+    </div>
+  </nav>
+
+  <main id="app" class="container">
+
+    <button class="btn btn-primary" v-on:click="showCreateWindow">Create a container</button>
+    <button class="btn btn-primary" v-on:click="showImportWindow">Import a container</button>
+    <button class="btn btn-primary" v-on:click="showCreateImageWindow">Create an image</button>
+    <button class="btn btn-primary" v-on:click="showCreatePackageWindow">Create a package</button>
+
+    <table class="table table-hover mt-4">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Base image</th>
+          <th>Command line</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="container in containers">
+          <td>{{ container.containerName }}</td>
+          <td>{{ container.baseImageName }}</td>
+          <td>{{ container.cmdLine }}</td>
+          <td>
+            <div v-if="container.state != 'running'">
+              <div class="btn-group">
+                <button class="btn btn-success" v-on:click="startContainer(container)">Start</button>
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#" v-on:click="showEditWindow(container)">Edit</a>
+                  <a class="dropdown-item" href="#" v-on:click="showDeleteDialog(container)">Delete</a>
+                  <a class="dropdown-item" href="#" v-on:click="showExportWindow(container)">Export</a>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div v-else>
+              <button class="btn btn-primary" v-on:click="restartContainer(container)">Restart</button>
+              <button class="btn btn-danger" v-on:click="stopContainer(container)">Stop</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+
+</body>
+
+</html>

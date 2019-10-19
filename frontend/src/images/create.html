@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="../../lib/bootstrap.min.css">
+
+  <script async src="../../lib/bootstrap.min.js"></script>
+  <script defer src="../../lib/vue.js"></script>
+  <script async src="create.js"></script>
+
+  <title>Create an image</title>
+
+  <style>
+    body {
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main id="app" class="container">
+
+    <h2 class="mb-4">Create an image</h2>
+    <form @submit.prevent="createImage">
+      <div class="form-group">
+        <label for="input-image-name">Image name:</label>
+        <input type="text" class="form-control" id="input-image-name" v-model="image.name" placeholder="MyAwesomeImage"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="input-description">Description:</label>
+        <input type="text" class="form-control" id="input-description" v-model="image.description"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="input-base-image">Base image:</label>
+        <select class="custom-select" id="input-base-image" v-model="image.baseImageName" required>
+          <option value="">No base image</option>
+          <option v-for="baseImage in images" :value="baseImage.name">{{ baseImage.name }}</option> -->
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+  </main>
+
+</body>
+
+</html>

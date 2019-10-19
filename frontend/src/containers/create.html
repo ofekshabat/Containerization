@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="../../lib/bootstrap.min.css">
+
+  <script async src="../../lib/bootstrap.min.js"></script>
+  <script defer src="../../lib/vue.js"></script>
+  <script async src="create.js"></script>
+
+  <title>Create a container</title>
+
+  <style>
+    body {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main id="app" class="container">
+
+    <h2 class="mb-4">Create a container</h2>
+    <form @submit.prevent="createContainer">
+      <div class="form-group">
+        <label for="input-container-name">Container name:</label>
+        <input type="text" class="form-control" id="input-container-name" v-model="container.containerName" placeholder="MyAwesomeContainer"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="input-base-image">Base image:</label>
+        <select class="custom-select" id="input-base-image" v-model="container.baseImageName" required>
+          <option v-for="image in images" :value="image.name">{{ image.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="input-cmd-line">Command line:</label>
+        <input type="text" class="form-control" id="input-cmd-line" v-model="container.cmdLine" placeholder="/bin/bash"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="input-max-cpu">Max CPU: [%]</label>
+        <input type="number" class="form-control" id="input-max-cpu" v-model.number="container.maxCpu" placeholder="30"
+          required min="1" max="100">
+      </div>
+      <div class="form-group">
+        <label for="input-max-memory">Max memory: [MBs]</label>
+        <input type="number" class="form-control" id="input-max-memory" v-model.number="container.maxMemory" placeholder="1024"
+          required min="1">
+      </div>
+      <div class="form-group">
+        <label for="input-max-pids">Max PIDs:</label>
+        <input type="number" class="form-control" id="input-max-pids" v-model.number="container.maxPids" placeholder="100"
+          required min="1">
+      </div>
+      <div class="form-group">
+        <label for="input-address">IP Address:</label>
+        <input type="text" class="form-control" id="input-address" v-model="container.address" placeholder="10.10.10.2/24"
+          required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+  </main>
+
+</body>
+
+</html>
