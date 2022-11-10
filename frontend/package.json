@@ -9,7 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "electron": "^4.1.4"
+    "electron": "^18.3.7"
   },
   "directories": {
     "lib": "lib"
